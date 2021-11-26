@@ -11,3 +11,6 @@ if (yearsIsBissextile) {
 } else {
     console.log(yearsIsNotBissextile);
 };
+
+
+// facon terneur :     "console.log('yearsIsBissextile ? "bissextile" : "non bissextile"
