@@ -18,6 +18,8 @@
 
 
 
-const calc = 1 * "a";
-console.log(typeof calc);
+
+    // Sert à  démontrer la valeur de NaN ! 
+        const calc = 1 * "a";
+        console.log(typeof calc);
 
