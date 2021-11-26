@@ -27,6 +27,14 @@ if ( number % 15 == 0 ) {
  if (number % 5 == 0) msg += "buzz";
 
  console.log(msg == ""? n: msg);  
+
+
+
+ Autre solution avec Ternaire 
+ let isFizz = n % 3 == 0;
+ let isBuzz = n % 5 == 0; 
+console.log(isFizz ?  (isBuzz ? "fizzbuzz" : "fizz") : (isBuzz ? "buzz" : n));
+
  */ 
 
 
