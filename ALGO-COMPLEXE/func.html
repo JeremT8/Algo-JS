@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+        <div id="test">
+
+        </div>
+        <div id="target">
+
+        </div>
+        <script>
+            const out = document.getElementById("target");
+            const matrix = new Array();
+            var numberTotal = 30;
+            for(let i = 0; i < numberTotal; i++ ){
+                matrix[i] = [];
+                for(let k = 0; k < numberTotal; k++)
+                matrix[i][k] = Math.random()> 0.5 ? 1 : 0;
+            }
+
+            var html = "<table>";
+            for (var row of matrix) {
+                html += "<tr>";
+                for (var col of row) {
+                    if (col == 0) {
+                        var color = "white";
+                    } else {
+                        color = "black";
+                    }
+                    html += '<td style="background-color:' + color + '"></td>'
+                }
+                html += "</tr>";
+            }
+            html += "</table>";
+            out.innerHTML = html;
+        </script>
+
+        
+    
+<footer>
+    <script src="func.js"></script>
+</footer>
+</body>
+</html>

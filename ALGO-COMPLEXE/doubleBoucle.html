@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    
+</head>
+<body>
+    <div id="target"></div>
+    <script> 
+         let out = document.getElementById("target");
+        const matrix = [ 
+            [0, 0, 0, 1, 0, 0, 0], 
+            [0, 0, 1, 1, 1, 0, 0], 
+            [0, 1, 1, 1, 1, 1, 0], 
+            [1, 1, 1, 1, 1, 1, 1], 
+            [0, 1, 1, 1, 1, 1, 0], 
+            [0, 0, 1, 1, 1, 0, 0], 
+            [0, 0, 0, 1, 0, 0, 0], 
+        ]; 
+        var html = "<table>"; 
+        for (var row of matrix) { 
+            html += "<tr>"; 
+                for(var col of row){ 
+                    if(col == 0){ 
+                        var color = "white"; 
+                    } else { 
+                        color = "black"; 
+                    } 
+                    html += '<td style="background-color:'+ color +'"></td>' 
+                } 
+            html += "</tr>"; 
+        } 
+        html += "</table>"; 
+        out.innerHTML = html; 
+    </script>
+</body>
+</html>
