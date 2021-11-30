@@ -24,6 +24,13 @@ Que faites-vous ?`,
                 oui: "Vous vous cachez",
                 non: "Le troll vous dévore"
             }
+        },
+        danser: {
+            question: "Sais-tu danser la Carioca?",
+            answers: {
+                oui: `Youpi, dansons la Carioca c'est bien faisez tous comme moi`,
+                non: "Dommage..."
+            }
         }
     }
 }
