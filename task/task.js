@@ -28,14 +28,34 @@ const app = (function(){
         // ecrire dans le fichier JSON
         fs.writeFileSync(dataSource, JSON.stringify(taskList))
     }
+
+    const findOneById = function(id) {
+
+        oneTask = taskList.find(item => (item.id === id));
+        return oneTask
+        
+    }
+    
+    const deleteOneById = function (id) {
+        const index = taskList.findIndex ( item => item.id === id);
+            if(index >= 0 ) {
+                taskList.splice(index, 1)
+            } 
+
+            return findAll();
+        }
+    
+
     return {
         findAll,
-        insertOne
+        insertOne,
+        findOneById,
+        deleteOneById
     }
 })();
 
 // Test
-console.table(app.findAll())
-app.insertOne("M'onaniser")
-console.table(app.findAll())
-
+console.table(app.findAll());
+//app.insertOne("M'onaniser")
+console.log(app.findOneById(1))
+console.log(app.deleteOneById(1))
