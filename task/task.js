@@ -10,18 +10,18 @@ const taskList = JSON.parse(data);
 
 // Création de l'application
 
-const app = (function(){
+const app = (function () {
 
-    const persist = function(){
+    const persist = function () {
         // Ecriture dans le fichier json
         fs.writeFileSync(dataSource, JSON.stringify(taskList));
     }
 
-    const findAll = function(){
+    const findAll = function () {
         return taskList;
     }
 
-    const insertOne = function(label){
+    const insertOne = function (label) {
         // la nouvelle tâche
         const newTask = {
             label: label,
@@ -33,25 +33,27 @@ const app = (function(){
         taskList.push(newTask);
 
         persist();
-    }
-
-    const findOneById = function(id){
-        return taskList.find( item => item.id === id);
-    }
-
-    const deleteOneById = function(id){
-        const index = taskList.findIndex( item => item.id === id);
-        if(index >= 0){
-            taskList.splice(index, 1);
-            persist();
-        } 
 
         return findAll();
     }
 
-    const updateOne = function(task){
-        const index = taskList.findIndex( item => item.id === task.id);
-        if(index >= 0){
+    const findOneById = function (id) {
+        return taskList.find(item => item.id === id);
+    }
+
+    const deleteOneById = function (id) {
+        const index = taskList.findIndex(item => item.id === id);
+        if (index >= 0) {
+            taskList.splice(index, 1);
+            persist();
+        }
+
+        return findAll();
+    }
+
+    const updateOne = function (task) {
+        const index = taskList.findIndex(item => item.id === task.id);
+        if (index >= 0) {
             taskList[index] = task;
             persist();
         }
@@ -59,17 +61,54 @@ const app = (function(){
         return findAll();
     }
 
+    const findAllPending = function() {
+        return taskList.filter(item => ! item.done);
+
+    }
+
+
+    const findAllDone = function() {
+        return taskList.filter(item => item.done);
+        
+    }
+
     return {
         findAll,
         insertOne,
         findOneById,
         deleteOneById,
-        updateOne
+        updateOne,
+        findAllPending,
+        findAllDone
     }
 })();
 
-// Test
-const task = app.findOneById(1);
-task.done = false;
-task.label = "Sortie a l'interieur";
-console.log(app.updateOne(task));
+// Routage de l'application
+const route = process.argv.slice(2);
+if (route.length > 0) {
+    const command = route[0];
+    const params = route.slice(1);
+    if (command in app) {
+        let result = executeCommand(command, params);
+        console.log(result);
+    } else {
+        console.error("commande inconnue");
+    }
+} else {
+    console.error("Vous devez saisir une commande");
+}
+function executeCommand(command, params) {
+    if (command === "updateOne") {
+        const task = {
+            label: params[0],
+            id: params[1],
+            done: params[2] === "true"
+        };
+        result = app.updateOne(task);
+    } else {
+        // Exécution de la commande
+        result = app[command](...params);
+    }
+    return result;
+}
+
