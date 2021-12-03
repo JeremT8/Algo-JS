@@ -78,7 +78,7 @@ list.add(new Node(5))
 
 //list.deleteTail();
 
-console.log(list.getNode(50).value)
+console.log(list.getNode(2).value)
 
 /*
 let current = list.tail;
